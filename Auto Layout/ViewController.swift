@@ -9,6 +9,33 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    let prevButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("PREV", for: .normal)
+        button.setTitleColor(.gray, for: .normal)
+        button.titleLabel?.font = .boldSystemFont(ofSize: 14)
+        // button.backgroundColor = .red
+        return button
+    }()
+    
+    let nextButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("NEXT", for: .normal)
+        button.setTitleColor(.systemPink, for: .normal)
+        button.titleLabel?.font = .boldSystemFont(ofSize: 14)
+        // button.backgroundColor = .green
+        return button
+    }()
+    
+    let pageIndicator: UIPageControl = {
+        let control = UIPageControl()
+        control.currentPage = 0
+        control.numberOfPages = 4
+        control.currentPageIndicatorTintColor = .systemPink
+        control.pageIndicatorTintColor = .gray
+        return control
+    }()
+    
     let topContainerView: UIView = {
         let container = UIView()
         // container.backgroundColor = .red
@@ -53,15 +80,16 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         layTopView()
+        layDetailView()
         layBottomView()
     }
     
     func layTopView() {
         // view must be added as a subview before making any layiout constraint adjustment, otherwise we'll get runtime exception
         view.addSubview(topContainerView)
-        topContainerView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        topContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        topContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        topContainerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        topContainerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        topContainerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
         topContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5).isActive = true
 
         topContainerView.addSubview(imageView)
@@ -71,16 +99,32 @@ class ViewController: UIViewController {
         imageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
     }
     
-    func layBottomView() {
+    func layDetailView() {
         view.addSubview(titleView)
         titleView.topAnchor.constraint(equalTo: topContainerView.bottomAnchor).isActive = true
-        titleView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 46).isActive = true
+        titleView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 46).isActive = true
         // trailing or right constaint has to be negative
-        titleView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -46).isActive = true
-        titleView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        titleView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -46).isActive = true
+        titleView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
     }
 
-    
+    func layBottomView() {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.addArrangedSubview(prevButton)
+        stackView.addArrangedSubview(pageIndicator)
+        stackView.addArrangedSubview(nextButton)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        // stackView.backgroundColor = .red
+        view.addSubview(stackView)
+        NSLayoutConstraint.activate([
+            stackView.heightAnchor.constraint(equalToConstant: 50),
+            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+        ])
+    }
 
 }
 
