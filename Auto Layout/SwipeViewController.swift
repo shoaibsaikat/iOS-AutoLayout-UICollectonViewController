@@ -10,6 +10,14 @@ import UIKit
 private let reuseIdentifier = "Cell"
 
 class SwipeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+    
+    private var pages = [
+        Page(imageURL: "cardback", headerText: "Check our designed cards!", bodyText: "You'll find lots of desiged cards, that you won't find anywhere else."),
+        Page(imageURL: "king", headerText: "Join us today for fun and games!", bodyText: "Are you ready for loads and loads of fun? Don't wait any longer! Hope to see you in our stores soon."),
+        Page(imageURL: "queen", headerText: "Join our Card Game now!", bodyText: "Our game has lots of different cards for your choosing. Join us now!"),
+        Page(imageURL: "jack", headerText: "Want to see cards in actiion!", bodyText: "We'll provide lots of custom games for your liking. We're waiting for you."),
+        
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,14 +53,15 @@ class SwipeViewController: UICollectionViewController, UICollectionViewDelegateF
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 4
+        return pages.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PageViewCell
     
         // Configure the cell
-//        cell.backgroundColor = indexPath.item % 2 == 0 ? .systemRed : .systemBlue
+        cell.setPage(page: pages[indexPath.item])
+        print("\(indexPath.item)")
         return cell
     }
     

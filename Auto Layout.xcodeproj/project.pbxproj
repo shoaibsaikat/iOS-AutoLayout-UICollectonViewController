@@ -14,6 +14,7 @@
 		1147E09D2C19E0360008CEC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1147E09C2C19E0360008CEC5 /* Assets.xcassets */; };
 		1147E0A02C19E0360008CEC5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1147E09E2C19E0360008CEC5 /* LaunchScreen.storyboard */; };
 		11E8182A2C350C5C003882F2 /* PageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E818292C350C5C003882F2 /* PageViewCell.swift */; };
+		11E8182C2C356032003882F2 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E8182B2C356032003882F2 /* Page.swift */; };
 		11F89AA62C33E9BD00CE236B /* SwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F89AA52C33E9BD00CE236B /* SwipeViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 		1147E09F2C19E0360008CEC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1147E0A12C19E0360008CEC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11E818292C350C5C003882F2 /* PageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewCell.swift; sourceTree = "<group>"; };
+		11E8182B2C356032003882F2 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		11F89AA52C33E9BD00CE236B /* SwipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -62,6 +64,7 @@
 			children = (
 				1147E0932C19E02C0008CEC5 /* AppDelegate.swift */,
 				11F89AA52C33E9BD00CE236B /* SwipeViewController.swift */,
+				11E8182B2C356032003882F2 /* Page.swift */,
 				11E818292C350C5C003882F2 /* PageViewCell.swift */,
 				1147E0952C19E02C0008CEC5 /* SceneDelegate.swift */,
 				1147E0972C19E02C0008CEC5 /* ViewController.swift */,
@@ -145,6 +148,7 @@
 			files = (
 				11E8182A2C350C5C003882F2 /* PageViewCell.swift in Sources */,
 				1147E0982C19E02C0008CEC5 /* ViewController.swift in Sources */,
+				11E8182C2C356032003882F2 /* Page.swift in Sources */,
 				1147E0942C19E02C0008CEC5 /* AppDelegate.swift in Sources */,
 				1147E0962C19E02C0008CEC5 /* SceneDelegate.swift in Sources */,
 				11F89AA62C33E9BD00CE236B /* SwipeViewController.swift in Sources */,

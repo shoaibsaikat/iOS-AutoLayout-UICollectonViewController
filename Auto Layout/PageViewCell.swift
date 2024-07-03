@@ -9,42 +9,17 @@ import UIKit
 
 class PageViewCell: UICollectionViewCell {
     
-    let prevButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("PREV", for: .normal)
-        button.setTitleColor(.gray, for: .normal)
-        button.titleLabel?.font = .boldSystemFont(ofSize: 14)
-        // button.backgroundColor = .red
-        return button
-    }()
+    private var page: Page?
     
-    let nextButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("NEXT", for: .normal)
-        button.setTitleColor(.systemPink, for: .normal)
-        button.titleLabel?.font = .boldSystemFont(ofSize: 14)
-        // button.backgroundColor = .green
-        return button
-    }()
-    
-    let pageIndicator: UIPageControl = {
-        let control = UIPageControl()
-        control.currentPage = 0
-        control.numberOfPages = 4
-        control.currentPageIndicatorTintColor = .systemPink
-        control.pageIndicatorTintColor = .gray
-        return control
-    }()
-    
-    let topContainerView: UIView = {
+    private let topContainerView: UIView = {
         let container = UIView()
         // container.backgroundColor = .red
         container.translatesAutoresizingMaskIntoConstraints = false
         return container
     }()
     
-    let imageView: UIImageView = {
-        let image = UIImage(imageLiteralResourceName: "king")
+    lazy private var imageView: UIImageView = {
+        let image = UIImage(imageLiteralResourceName: self.page!.imageURL)
         let imageView = UIImageView(image: image)
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -53,7 +28,7 @@ class PageViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    let titleView: UITextView = {
+    lazy private var textView: UITextView = {
         let titleFont = UIFont.boldSystemFont(ofSize: 20)
         let detailFont = UIFont.systemFont(ofSize: 16)
         let titleAttributes: [NSAttributedString.Key: Any] = [
@@ -64,8 +39,8 @@ class PageViewCell: UICollectionViewCell {
             .foregroundColor: UIColor.gray
         ]
         
-        var attributedText = NSMutableAttributedString(string: "Join us today for fun and games!\n\n\n", attributes: titleAttributes)
-        attributedText.append(NSAttributedString(string: "Are you ready for loads and loads of fun? Don't wait any longer! Hope to see you in our stores soon.", attributes: detailAttributes))
+        var attributedText = NSMutableAttributedString(string: self.page!.headerText, attributes: titleAttributes)
+        attributedText.append(NSAttributedString(string: "\n\n\n\(self.page!.bodyText)", attributes: detailAttributes))
         
         let textView = UITextView()
         textView.attributedText = attributedText
@@ -78,17 +53,19 @@ class PageViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        layTopView()
-        layDetailView()
-        layBottomView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func layTopView() {
+    func setPage(page: Page) {
+        self.page = page
+        layTopView()
+        layDetailView()
+    }
+    
+    private func layTopView() {
         // view must be added as a subview before making any layiout constraint adjustment, otherwise we'll get runtime exception
         addSubview(topContainerView)
         topContainerView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
@@ -103,30 +80,12 @@ class PageViewCell: UICollectionViewCell {
         imageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
     }
     
-    func layDetailView() {
-        addSubview(titleView)
-        titleView.topAnchor.constraint(equalTo: topContainerView.bottomAnchor).isActive = true
-        titleView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 46).isActive = true
+    private func layDetailView() {
+        addSubview(textView)
+        textView.topAnchor.constraint(equalTo: topContainerView.bottomAnchor).isActive = true
+        textView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 46).isActive = true
         // trailing or right constaint has to be negative
-        titleView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -46).isActive = true
-        titleView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor).isActive = true
-    }
-
-    func layBottomView() {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
-        stackView.addArrangedSubview(prevButton)
-        stackView.addArrangedSubview(pageIndicator)
-        stackView.addArrangedSubview(nextButton)
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        // stackView.backgroundColor = .red
-        addSubview(stackView)
-        NSLayoutConstraint.activate([
-            stackView.heightAnchor.constraint(equalToConstant: 50),
-            stackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
-            stackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-        ])
+        textView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -46).isActive = true
+        textView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor).isActive = true
     }
 }
