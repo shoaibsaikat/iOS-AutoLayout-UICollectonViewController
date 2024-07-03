@@ -20,7 +20,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScene)
         window?.makeKeyAndVisible()
-        window?.rootViewController = SwipeViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        let gridLayout = UICollectionViewFlowLayout()
+        gridLayout.scrollDirection = .horizontal
+        window?.rootViewController = SwipeViewController(collectionViewLayout: gridLayout)
+        // we can manually set our view controller to any view controller we want
+        // window?.rootViewController = ViewController()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
