@@ -17,6 +17,33 @@ class SwipeViewController: UICollectionViewController, UICollectionViewDelegateF
         Page(image: "queen", headerText: "Try our Card Game now!", bodyText: "Our game has lots of different cards for your choosing. Join us now!"),
         Page(image: "jack", headerText: "Want to see cards in actiion!", bodyText: "We'll provide lots of custom games for your liking. We're waiting for you."),
     ]
+    
+    private let prevButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("PREV", for: .normal)
+        button.setTitleColor(.gray, for: .normal)
+        button.titleLabel?.font = .boldSystemFont(ofSize: 14)
+        // button.backgroundColor = .red
+        return button
+    }()
+    
+    private let nextButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("NEXT", for: .normal)
+        button.setTitleColor(.systemPink, for: .normal)
+        button.titleLabel?.font = .boldSystemFont(ofSize: 14)
+        // button.backgroundColor = .green
+        return button
+    }()
+    
+    lazy private var pageIndicator: UIPageControl = {
+        let control = UIPageControl()
+        control.currentPage = 0
+        control.numberOfPages = pages.count
+        control.currentPageIndicatorTintColor = .systemPink
+        control.pageIndicatorTintColor = .gray
+        return control
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,11 +57,12 @@ class SwipeViewController: UICollectionViewController, UICollectionViewDelegateF
         // Do any additional setup after loading the view.
         collectionView.backgroundColor = .systemBackground
         collectionView.isPagingEnabled = true
+        
+        layBottomView()
     }
 
     // MARK: UICollectionViewDataSource
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
@@ -60,5 +88,25 @@ class SwipeViewController: UICollectionViewController, UICollectionViewDelegateF
     // MARK: UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: view.frame.height)
+    }
+    
+    // MARK: Etc.
+    
+    func layBottomView() {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .equalSpacing
+        stackView.addArrangedSubview(prevButton)
+        stackView.addArrangedSubview(pageIndicator)
+        stackView.addArrangedSubview(nextButton)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        // stackView.backgroundColor = .red
+        view.addSubview(stackView)
+        NSLayoutConstraint.activate([
+            stackView.heightAnchor.constraint(equalToConstant: 50),
+            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+        ])
     }
 }
