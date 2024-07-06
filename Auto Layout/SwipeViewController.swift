@@ -11,12 +11,11 @@ private let reuseIdentifier = "Cell"
 
 class SwipeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
-    private var pages = [
-        Page(imageURL: "cardback", headerText: "Check our designed cards!", bodyText: "You'll find lots of desiged cards, that you won't find anywhere else."),
-        Page(imageURL: "king", headerText: "Join us today for fun and games!", bodyText: "Are you ready for loads and loads of fun? Don't wait any longer! Hope to see you in our stores soon."),
-        Page(imageURL: "queen", headerText: "Join our Card Game now!", bodyText: "Our game has lots of different cards for your choosing. Join us now!"),
-        Page(imageURL: "jack", headerText: "Want to see cards in actiion!", bodyText: "We'll provide lots of custom games for your liking. We're waiting for you."),
-        
+    private var pages: [Page] = [
+        Page(image: "cardback", headerText: "Check our designed cards!", bodyText: "You'll find lots of desiged cards, that you won't find anywhere else."),
+        Page(image: "king", headerText: "Join us today for fun and games!", bodyText: "Are you ready for loads and loads of fun? Don't wait any longer! Hope to see you in our stores soon."),
+        Page(image: "queen", headerText: "Join our Card Game now!", bodyText: "Our game has lots of different cards for your choosing. Join us now!"),
+        Page(image: "jack", headerText: "Want to see cards in actiion!", bodyText: "We'll provide lots of custom games for your liking. We're waiting for you."),
     ]
 
     override func viewDidLoad() {
@@ -33,18 +32,7 @@ class SwipeViewController: UICollectionViewController, UICollectionViewDelegateF
         collectionView.isPagingEnabled = true
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
     // MARK: UICollectionViewDataSource
-
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -58,10 +46,10 @@ class SwipeViewController: UICollectionViewController, UICollectionViewDelegateF
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PageViewCell
-    
         // Configure the cell
-        cell.setPage(page: pages[indexPath.item])
-        print("\(indexPath.item)")
+        cell.headerText = pages[indexPath.item].headerText
+        cell.bodyText = pages[indexPath.item].bodyText
+        cell.image = pages[indexPath.item].image
         return cell
     }
     

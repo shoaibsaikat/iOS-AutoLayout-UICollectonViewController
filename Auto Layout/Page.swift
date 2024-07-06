@@ -8,7 +8,7 @@
 import Foundation
 
 struct Page {
-    var imageURL: String
+    var image: String
     var headerText: String
     var bodyText: String
 }
