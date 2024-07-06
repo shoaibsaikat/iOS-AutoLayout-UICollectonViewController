@@ -14,7 +14,7 @@ class SwipeViewController: UICollectionViewController, UICollectionViewDelegateF
     private var pages: [Page] = [
         Page(image: "cardback", headerText: "Check our designed cards!", bodyText: "You'll find lots of desiged cards, that you won't find anywhere else."),
         Page(image: "king", headerText: "Join us today for fun and games!", bodyText: "Are you ready for loads and loads of fun? Don't wait any longer! Hope to see you in our stores soon."),
-        Page(image: "queen", headerText: "Join our Card Game now!", bodyText: "Our game has lots of different cards for your choosing. Join us now!"),
+        Page(image: "queen", headerText: "Try our Card Game now!", bodyText: "Our game has lots of different cards for your choosing. Join us now!"),
         Page(image: "jack", headerText: "Want to see cards in actiion!", bodyText: "We'll provide lots of custom games for your liking. We're waiting for you."),
     ]
 
