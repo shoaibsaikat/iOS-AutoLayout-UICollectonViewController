@@ -14,7 +14,6 @@
 		1147E0A02C19E0360008CEC5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1147E09E2C19E0360008CEC5 /* LaunchScreen.storyboard */; };
 		11E8182A2C350C5C003882F2 /* PageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E818292C350C5C003882F2 /* PageViewCell.swift */; };
 		11E8182C2C356032003882F2 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E8182B2C356032003882F2 /* Page.swift */; };
-		11EDCEA22C3B9F13002FD825 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EDCEA12C3B9F13002FD825 /* ViewController.swift */; };
 		11F89AA62C33E9BD00CE236B /* SwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F89AA52C33E9BD00CE236B /* SwipeViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,8 +27,6 @@
 		1147E0A12C19E0360008CEC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11E818292C350C5C003882F2 /* PageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewCell.swift; sourceTree = "<group>"; };
 		11E8182B2C356032003882F2 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
-		11EDCEA02C3B9EF2002FD825 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		11EDCEA12C3B9F13002FD825 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../../../../.Trashes/501/ViewController.swift; sourceTree = "<group>"; };
 		11F89AA52C33E9BD00CE236B /* SwipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,11 +74,9 @@
 		11EDCE9F2C3B9EDF002FD825 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				11EDCEA12C3B9F13002FD825 /* ViewController.swift */,
 				1147E09E2C19E0360008CEC5 /* LaunchScreen.storyboard */,
 				1147E0932C19E02C0008CEC5 /* AppDelegate.swift */,
 				1147E0992C19E02D0008CEC5 /* Main.storyboard */,
-				11EDCEA02C3B9EF2002FD825 /* ViewController.swift */,
 			);
 			path = "Support Files";
 			sourceTree = "<group>";
@@ -159,7 +154,6 @@
 				11E8182A2C350C5C003882F2 /* PageViewCell.swift in Sources */,
 				11E8182C2C356032003882F2 /* Page.swift in Sources */,
 				1147E0942C19E02C0008CEC5 /* AppDelegate.swift in Sources */,
-				11EDCEA22C3B9F13002FD825 /* ViewController.swift in Sources */,
 				1147E0962C19E02C0008CEC5 /* SceneDelegate.swift in Sources */,
 				11F89AA62C33E9BD00CE236B /* SwipeViewController.swift in Sources */,
 			);

@@ -73,6 +73,6 @@ class PageViewCell: UICollectionViewCell {
         textView.topAnchor.constraint(equalTo: imageView.bottomAnchor).isActive = true
         textView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 46).isActive = true
         textView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -46).isActive = true
-        textView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor).isActive = true
+        textView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
     }
 }
