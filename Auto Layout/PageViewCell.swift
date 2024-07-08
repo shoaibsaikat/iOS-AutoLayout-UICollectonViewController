@@ -31,7 +31,7 @@ class PageViewCell: UICollectionViewCell {
     private var textView = UITextView()
     
     private func drawTextView() {
-        let titleFont = UIFont.boldSystemFont(ofSize: 20)
+        let titleFont = UIFont.boldSystemFont(ofSize: 18)
         let detailFont = UIFont.systemFont(ofSize: 16)
         let titleAttributes: [NSAttributedString.Key: Any] = [
             .font: titleFont,
@@ -61,9 +61,9 @@ class PageViewCell: UICollectionViewCell {
     
     private func layTopView() {
         addSubview(imageView)
-        imageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 150).isActive = true
+        imageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
         imageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        // imageView?.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        // imageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
     }

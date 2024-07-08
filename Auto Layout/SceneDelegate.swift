@@ -21,9 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         window?.makeKeyAndVisible()
         let gridLayout = UICollectionViewFlowLayout()
-        gridLayout.scrollDirection = .horizontal
-//        gridLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         window?.rootViewController = SwipeViewController(collectionViewLayout: gridLayout)
+        gridLayout.scrollDirection = .horizontal
         // we can manually set our view controller to any view controller we want
         // window?.rootViewController = ViewController()
     }

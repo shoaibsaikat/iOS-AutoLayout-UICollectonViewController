@@ -74,6 +74,14 @@ class SwipeViewController: UICollectionViewController, UICollectionViewDelegateF
         }
         // else is not needed, as if pageIndicator.currentPage and scrolledPage are the same then we don't have to do anything
     }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animate(alongsideTransition: { _ in
+            self.collectionViewLayout.invalidateLayout()
+        }, completion: { _ in
+            self.collectionView.scrollToItem(at: IndexPath(item: self.pageIndicator.currentPage, section: 0), at: .centeredHorizontally, animated: true)
+        })
+    }
 
     // MARK: UICollectionViewDataSource
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -92,7 +100,7 @@ class SwipeViewController: UICollectionViewController, UICollectionViewDelegateF
         cell.image = pages[indexPath.item].image
         return cell
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
@@ -114,7 +122,7 @@ class SwipeViewController: UICollectionViewController, UICollectionViewDelegateF
         // stackView.backgroundColor = .red
         view.addSubview(stackView)
         NSLayoutConstraint.activate([
-            stackView.heightAnchor.constraint(equalToConstant: 50),
+            stackView.heightAnchor.constraint(equalToConstant: 20),
             stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
