@@ -72,7 +72,6 @@ class PageViewCell: UICollectionViewCell {
         addSubview(textView)
         textView.topAnchor.constraint(equalTo: imageView.bottomAnchor).isActive = true
         textView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 46).isActive = true
-        // trailing or right constaint has to be negative
         textView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -46).isActive = true
         textView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor).isActive = true
     }

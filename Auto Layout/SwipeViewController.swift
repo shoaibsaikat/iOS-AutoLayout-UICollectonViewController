@@ -18,20 +18,22 @@ class SwipeViewController: UICollectionViewController, UICollectionViewDelegateF
         Page(image: "jack", headerText: "Want to see cards in actiion!", bodyText: "We'll provide lots of custom games for your liking. We're waiting for you."),
     ]
     
-    private let prevButton: UIButton = {
+    lazy private var prevButton: UIButton = {
         let button = UIButton()
         button.setTitle("PREV", for: .normal)
         button.setTitleColor(.gray, for: .normal)
         button.titleLabel?.font = .boldSystemFont(ofSize: 14)
         // button.backgroundColor = .red
+        button.addTarget(self, action: #selector(tapPrev), for: .touchUpInside)
         return button
     }()
     
-    private let nextButton: UIButton = {
+    lazy private var nextButton: UIButton = {
         let button = UIButton()
         button.setTitle("NEXT", for: .normal)
         button.setTitleColor(.systemPink, for: .normal)
         button.titleLabel?.font = .boldSystemFont(ofSize: 14)
+        button.addTarget(self, action: #selector(tapNext), for: .touchUpInside)
         // button.backgroundColor = .green
         return button
     }()
@@ -60,15 +62,25 @@ class SwipeViewController: UICollectionViewController, UICollectionViewDelegateF
         
         layBottomView()
     }
+    
+    override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let scrolledPage = Int(targetContentOffset.pointee.x / view.frame.width)
+        if pageIndicator.currentPage < scrolledPage {
+            pageIndicator.currentPage = scrolledPage
+            goToNextPage()
+        } else if pageIndicator.currentPage > scrolledPage {
+            pageIndicator.currentPage = scrolledPage
+            goToPrevPage()
+        }
+        // else is not needed, as if pageIndicator.currentPage and scrolledPage are the same then we don't have to do anything
+    }
 
     // MARK: UICollectionViewDataSource
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
 
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
         return pages.count
     }
 
@@ -91,7 +103,6 @@ class SwipeViewController: UICollectionViewController, UICollectionViewDelegateF
     }
     
     // MARK: Etc.
-    
     func layBottomView() {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -108,5 +119,35 @@ class SwipeViewController: UICollectionViewController, UICollectionViewDelegateF
             stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
         ])
+    }
+    
+    private func goToPrevPage() {
+        collectionView.scrollToItem(at: IndexPath(item: pageIndicator.currentPage, section: 0), at: .centeredHorizontally, animated: true)
+        if pageIndicator.currentPage <= 0 {
+            prevButton.setTitleColor(.gray, for: .normal)
+        } else {
+            prevButton.setTitleColor(.systemPink, for: .normal)
+            nextButton.setTitleColor(.systemPink, for: .normal)
+        }
+    }
+    
+    private func goToNextPage() {
+        collectionView.scrollToItem(at: IndexPath(item: pageIndicator.currentPage, section: 0), at: .centeredHorizontally, animated: true)
+        if pageIndicator.currentPage == pageIndicator.numberOfPages - 1 {
+            nextButton.setTitleColor(.gray, for: .normal)
+        } else {
+            prevButton.setTitleColor(.systemPink, for: .normal)
+            nextButton.setTitleColor(.systemPink, for: .normal)
+        }
+    }
+    
+    @IBAction private func tapNext() {
+        pageIndicator.currentPage = min(pageIndicator.currentPage + 1, pageIndicator.numberOfPages - 1)
+        goToNextPage()
+    }
+    
+    @IBAction private func tapPrev() {
+        pageIndicator.currentPage = max(pageIndicator.currentPage - 1, 0)
+        goToPrevPage()
     }
 }
