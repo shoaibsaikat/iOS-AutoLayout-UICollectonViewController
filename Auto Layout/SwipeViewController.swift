@@ -78,7 +78,6 @@ class SwipeViewController: UICollectionViewController, UICollectionViewDelegateF
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         coordinator.animate(alongsideTransition: { _ in
             self.collectionViewLayout.invalidateLayout()
-        }, completion: { _ in
             self.collectionView.scrollToItem(at: IndexPath(item: self.pageIndicator.currentPage, section: 0), at: .centeredHorizontally, animated: true)
         })
     }
@@ -107,7 +106,7 @@ class SwipeViewController: UICollectionViewController, UICollectionViewDelegateF
     
     // MARK: UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: view.frame.height)
+        return CGSize(width: view.frame.width, height: view.frame.height - 20)
     }
     
     // MARK: Etc.

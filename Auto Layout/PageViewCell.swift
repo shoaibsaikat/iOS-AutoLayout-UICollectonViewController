@@ -61,9 +61,9 @@ class PageViewCell: UICollectionViewCell {
     
     private func layTopView() {
         addSubview(imageView)
-        imageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
+        // imageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
         imageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        // imageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        imageView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -100).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
     }
