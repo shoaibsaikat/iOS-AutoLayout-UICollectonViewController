@@ -54,7 +54,7 @@ class SwipeViewController: UICollectionViewController, UICollectionViewDelegateF
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        self.collectionView!.register(PageViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView.register(PageViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
         collectionView.backgroundColor = .systemBackground
